@@ -35,14 +35,42 @@ public class ticketFile {
         }
             
     }
-        public void AddTicket(Ticket ticket){
+        public void AddBug(BugDefect bugdef){
             try{
             StreamWriter sw = new StreamWriter(filePath, true);
-            ticket.ticketID = Tickets.Max(t => t.ticketID) + 1;
-            sw.WriteLine($"{ticket.ticketID},{ticket.summary},{ticket.status},{ticket.submitter},{ticket.assigned},{ticket.watching}");
+            bugdef.ticketID = Tickets.Max(t => t.ticketID) + 1;
+            sw.WriteLine($"{bugdef.ticketID},{bugdef.summary},{bugdef.status},{bugdef.submitter},{bugdef.assigned},{bugdef.watching},{bugdef.severity}");
             sw.Close();
-            Tickets.Add(ticket);
-            logger.Info("Ticket #{Id} added", ticket.ticketID);
+            Tickets.Add(bugdef);
+            logger.Info("Ticket #{Id} added", bugdef.ticketID);
+            }
+            catch(Exception e){
+                logger.Error(e.Message);
+            }
+            
+        }
+        public void AddEnhance(Enhancement enhance){
+            try{
+            StreamWriter sw = new StreamWriter(filePath, true);
+            enhance.ticketID = Tickets.Max(t => t.ticketID) + 1;
+            sw.WriteLine($"{enhance.ticketID},{enhance.summary},{enhance.status},{enhance.submitter},{enhance.assigned},{enhance.watching},{enhance.software},{enhance.cost},{enhance.reason},{enhance.estimate}");
+            sw.Close();
+            Tickets.Add(enhance);
+            logger.Info("Ticket #{Id} added", enhance.ticketID);
+            }
+            catch(Exception e){
+                logger.Error(e.Message);
+            }
+            
+        }
+        public void AddTask(Task task){
+            try{
+            StreamWriter sw = new StreamWriter(filePath, true);
+            task.ticketID = Tickets.Max(t => t.ticketID) + 1;
+            sw.WriteLine($"{task.ticketID},{task.summary},{task.status},{task.submitter},{task.assigned},{task.watching}");
+            sw.Close();
+            Tickets.Add(task);
+            logger.Info("Ticket #{Id} added", task.ticketID);
             }
             catch(Exception e){
                 logger.Error(e.Message);

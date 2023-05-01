@@ -51,7 +51,7 @@ else if (prompt == "2"){
     Console.WriteLine("What is the severity?");
     bugdef.severity = Console.ReadLine();
 
-    ticketFile.AddTicket(bugdef);
+    ticketFile.AddBug(bugdef);
     }
     else if(type == "2"){
       Enhancement enhance = new Enhancement();
@@ -76,7 +76,7 @@ else if (prompt == "2"){
     enhance.reason = Console.ReadLine();
     Console.WriteLine("What is the estimate?");
     enhance.estimate = Console.ReadLine();
-    ticketFile.AddTicket(enhance);
+    ticketFile.AddEnhance(enhance);
     }
     else if(type == "3"){
       Task task = new Task();
@@ -97,7 +97,7 @@ else if (prompt == "2"){
     task.projectName = Console.ReadLine();
     Console.WriteLine("When must it be completed by?");
     task.dueDate = Console.ReadLine();
-    ticketFile.AddTicket(task);
+    ticketFile.AddTask(task);
     }
     else{
       Console.WriteLine("That is not a valid response.");
