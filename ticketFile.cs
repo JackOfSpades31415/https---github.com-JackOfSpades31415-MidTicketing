@@ -14,17 +14,52 @@ public class ticketFile {
         StreamReader sr = new StreamReader(filePath);
             while (!sr.EndOfStream)
             {
-                Ticket ticket = new Ticket();
+                
                 string line = sr.ReadLine();
-                    string[] ticketInfo = line.Split(',');
-                    ticket.ticketID = UInt64.Parse(ticketInfo[0]);
-                    ticket.summary = ticketInfo[1];
-                    ticket.status = ticketInfo[2];
-                    ticket.priority = ticketInfo[3];
-                    ticket.submitter = ticketInfo[4];
-                    ticket.assigned = ticketInfo[5];
-                    ticket.watching = ticketInfo[6];
+                string[] ticketInfo = line.Split(',');
+                if(ticketInfo[0] == "1"){
+                    BugDefect ticket = new BugDefect();
+                    ticket.ticketID = UInt64.Parse(ticketInfo[1]);
+                    ticket.summary = ticketInfo[2];
+                    ticket.status = ticketInfo[3];
+                    ticket.priority = ticketInfo[4];
+                    ticket.submitter = ticketInfo[5];
+                    ticket.assigned = ticketInfo[6];
+                    ticket.watching = ticketInfo[7];
+                    ticket.severity = ticketInfo[8];
                     Tickets.Add(ticket);
+                }
+                else if(ticketInfo[0] == "2"){
+                    Enhancement ticket = new Enhancement();
+                    ticket.ticketID = UInt64.Parse(ticketInfo[1]);
+                    ticket.summary = ticketInfo[2];
+                    ticket.status = ticketInfo[3];
+                    ticket.priority = ticketInfo[4];
+                    ticket.submitter = ticketInfo[5];
+                    ticket.assigned = ticketInfo[6];
+                    ticket.watching = ticketInfo[7];
+                    ticket.software = ticketInfo[8];
+                    ticket.cost = ticketInfo[9];
+                    ticket.reason = ticketInfo[10];
+                    ticket.estimate = ticketInfo[11];
+                    Tickets.Add(ticket);
+                }
+                else if(ticketInfo[0] == "3"){
+                    Task ticket = new Task();
+                    ticket.ticketID = UInt64.Parse(ticketInfo[1]);
+                    ticket.summary = ticketInfo[2];
+                    ticket.status = ticketInfo[3];
+                    ticket.priority = ticketInfo[4];
+                    ticket.submitter = ticketInfo[5];
+                    ticket.assigned = ticketInfo[6];
+                    ticket.watching = ticketInfo[7];
+                    ticket.projectName = ticketInfo[8];
+                    ticket.dueDate = ticketInfo[9];
+                    Tickets.Add(ticket);
+                }
+                else {
+                    throw new InvalidDataException("Invalid Data in file.");
+                }
             }
             sr.Close();
 

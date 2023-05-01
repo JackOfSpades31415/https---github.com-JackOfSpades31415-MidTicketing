@@ -1,4 +1,4 @@
-public class Ticket
+public abstract class Ticket
 {
     public int type {get; set;}
     public UInt64 ticketID {get; set;}
