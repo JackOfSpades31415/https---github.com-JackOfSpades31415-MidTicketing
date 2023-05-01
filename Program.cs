@@ -18,7 +18,6 @@ prompt = Console.ReadLine();
 
 if (prompt == "1"){
 
-    Console.WriteLine("TicketID, Summary, Status, Priority, Submitter, Assigned, Watching");
      foreach(Ticket t in ticketFile.Tickets)
     {
       Console.WriteLine(t.Display());
@@ -27,21 +26,82 @@ if (prompt == "1"){
 
 
 else if (prompt == "2"){
+    string type = "";
+    Console.WriteLine("What type of ticket will this be?");
+    Console.WriteLine("[1] for Bugs or Defects.");
+    Console.WriteLine("[2] for Enhancements");
+    Console.WriteLine("[3] for Tasks");
+    type = Console.ReadLine();
 
-    Ticket ticket = new Ticket();
+    if(type == "1"){
+    BugDefect bugdef = new BugDefect();
+    bugdef.type = 1;
     Console.WriteLine("Summary?");
-    ticket.summary = Console.ReadLine();
+    bugdef.summary = Console.ReadLine();
     Console.WriteLine("Current Status?");
-    ticket.status = Console.ReadLine();
+    bugdef.status = Console.ReadLine();
     Console.WriteLine("What's the Priority?");
-    ticket.priority = Console.ReadLine();
+    bugdef.priority = Console.ReadLine();
     Console.WriteLine("Who is the Submitter?");
-    ticket.submitter = Console.ReadLine();
+    bugdef.submitter = Console.ReadLine();
     Console.WriteLine("Who is Assigned?");
-    ticket.assigned = Console.ReadLine();
-    Console.WriteLine("Who is watching?");
-    ticket.watching = Console.ReadLine();
-    ticketFile.AddTicket(ticket);
+    bugdef.assigned = Console.ReadLine();
+    Console.WriteLine("Who is Watching?");
+    bugdef.watching = Console.ReadLine();
+    Console.WriteLine("What is the severity?");
+    bugdef.severity = Console.ReadLine();
+
+    ticketFile.AddTicket(bugdef);
+    }
+    else if(type == "2"){
+      Enhancement enhance = new Enhancement();
+      enhance.type = 2;
+    Console.WriteLine("Summary?");
+    enhance.summary = Console.ReadLine();
+    Console.WriteLine("Current Status?");
+    enhance.status = Console.ReadLine();
+    Console.WriteLine("What is the Priority?");
+    enhance.priority = Console.ReadLine();
+    Console.WriteLine("Who is the Submitter?");
+    enhance.submitter = Console.ReadLine();
+    Console.WriteLine("Who is Assigned?");
+    enhance.assigned = Console.ReadLine();
+    Console.WriteLine("Who is Watching?");
+    enhance.watching = Console.ReadLine();
+    Console.WriteLine("For what software?");
+    enhance.software = Console.ReadLine();
+    Console.WriteLine("How much would it cost?");
+    enhance.cost = Console.ReadLine();
+    Console.WriteLine("What is the reason for this?");
+    enhance.reason = Console.ReadLine();
+    Console.WriteLine("What is the estimate?");
+    enhance.estimate = Console.ReadLine();
+    ticketFile.AddTicket(enhance);
+    }
+    else if(type == "3"){
+      Task task = new Task();
+      task.type = 3;
+    Console.WriteLine("Summary?");
+    task.summary = Console.ReadLine();
+    Console.WriteLine("Current Status?");
+    task.status = Console.ReadLine();
+    Console.WriteLine("What is the Priority?");
+    task.priority = Console.ReadLine();
+    Console.WriteLine("Who is the Submitter?");
+    task.submitter = Console.ReadLine();
+    Console.WriteLine("Who is Assigned?");
+    task.assigned = Console.ReadLine();
+    Console.WriteLine("Who is Watching?");
+    task.watching = Console.ReadLine();
+    Console.WriteLine("What is the name of the project?");
+    task.projectName = Console.ReadLine();
+    Console.WriteLine("When must it be completed by?");
+    task.dueDate = Console.ReadLine();
+    ticketFile.AddTicket(task);
+    }
+    else{
+      Console.WriteLine("That is not a valid response.");
+    }
 
  }
 }while(prompt == "1" || prompt == "2");
